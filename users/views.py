@@ -14,6 +14,7 @@ from permission import UserAndRoleVerification
 from users.models import User
 from users.serializers import UserUpdateIACodeSerializer, UserSICSerializer, UserDetailSerializer
 from users.utils import generate_random_string, generate_random_digits
+from users.validators import validate_phone_number
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -24,12 +25,13 @@ class UserGetCreat(APIView):
         data = request.data
 
         phone = data.get('phone')
+        validate_phone_number(phone)
         user, _ = User.objects.get_or_create(phone=phone)
         user.auth_number = generate_random_digits()
+        user.save()
         time.sleep(2)
         print(user.auth_number)
 
-        user.save()
         response = redirect(f'auth/{user.id}')
         return response
 
