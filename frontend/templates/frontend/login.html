@@ -1,0 +1,12 @@
+{% extends 'frontend/base.html' %}
+{% block content %}
+    <div>
+        <form method="post"  action="{% url 'frontend:login' user.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button name="submit">Авторезоватся</button>
+            <input type="hidden" name="next">
+    </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'frontend/base.html' %}
+{% block content %}
+
+    <div>
+         <form method='post'
+      action="{% url 'frontend:index' %}">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+
+    <button name='submit'>Получить код авторезации</button>
+    <input type='hidden' name='next'>
+
+        </form>
+
+    </div>
+
+
+{% endblock %}

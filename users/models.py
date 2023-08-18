@@ -6,10 +6,10 @@ from users.validators import validate_phone_number
 
 
 class User(AbstractUser):
-    username = models.CharField(blank=True, max_length=1)
-    email = models.EmailField(null=True, blank=True)
+    username = None
+    email = None
     phone = models.CharField(unique=True, max_length=20, db_index=True)
-    password = models.CharField(max_length=1, null=True, blank=True)
+    password = None
     auth_number = models.IntegerField(null=True, blank=True)
     invite_code = models.CharField(max_length=6, null=True, blank=True, db_index=True)
     stranger_invite_code = models.CharField(max_length=6, null=True, blank=True, db_index=True)

@@ -1,0 +1,24 @@
+{% extends 'frontend/base.html' %}
+{% block content %}
+    <h3>Телефон: {{ user.phone }}</h3>
+    <h3>Инвайт код: {{ user.invite_code }}</h3>
+    {% if user.stranger_invite_code %}
+        <h3>Вы актевировали инвайт код: {{ user.stranger_invite_code }}</h3>
+        {% else %}
+        <form method="post" action="{% url 'frontend:user' user.id %}">
+        {% csrf_token %}
+            {{ form.as_p }}
+        <button name="submit">Добавить</button>
+            <input type="hidden" name="next">
+        </form>
+
+    {% endif %}
+    {% if invite_user %}
+        <h3>Вас добавили</h3>
+        {% for phone in invite_user %}
+        <h2>{{ phone }}</h2>
+        {% endfor %}
+    {% endif %}
+
+
+{% endblock %}
