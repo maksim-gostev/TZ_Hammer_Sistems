@@ -44,6 +44,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
+    'drf_spectacular',
 ]
 
 LOCAL_APPS = [
@@ -150,5 +151,21 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Птицы API',
+    'DESCRIPTION': 'Тестовое задание для Python разработчика: Hammer Systems',
+    'VERSION': '1.0.0',
+    "CONTACT": {
+            "name": "maksim-gostev",
+            "url": "https://github.com/maksim-gostev",
+        },
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+        },
 }

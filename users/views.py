@@ -12,7 +12,7 @@ from rest_framework.authtoken.models import Token
 
 from permission import UserAndRoleVerification
 from users.models import User
-from users.serializers import UserUpdateIACodeSerializer, UserSICSerializer, UserDetailSerializer
+from users.serializers import UserSICSerializer, UserDetailSerializer
 from users.utils import generate_random_string, generate_random_digits
 from users.validators import validate_phone_number
 
