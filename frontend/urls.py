@@ -7,5 +7,5 @@ app_name = 'frontend'
 urlpatterns = [
     path('', get_or_create_user , name='index'),
     path('auth/<int:pk>/', userlogin, name='login'),
-    path('user/<int:pk>/', userdetail, name='user'),
+    path('deteil/<int:pk>/', userdetail, name='user'),
 ]

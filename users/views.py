@@ -35,7 +35,7 @@ class UserGetCreat(APIView):
         return response
 
 
-class UserLogin(generics.UpdateAPIView):
+class UserLogin(generics.RetrieveAPIView):
     permission_classes = [AllowAny, ]
     authentication_classes = []
     queryset = get_user_model().objects.all()
@@ -45,7 +45,7 @@ class UserLogin(generics.UpdateAPIView):
         return Response(data={'messenger': 'Введите код авторизации'},
                         status=HTTP_200_OK)
 
-    def patch(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         user = self.get_object()
         if not user.invite_code:
             user.invite_code = generate_random_string()
@@ -60,7 +60,7 @@ class UserLogin(generics.UpdateAPIView):
         return Response(data={'token': token.key}, status=HTTP_202_ACCEPTED)
 
 
-class UserGetUpdate(generics.RetrieveUpdateAPIView):
+class UserGetUpdate(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated, UserAndRoleVerification]
     serializer_class = UserSICSerializer
     queryset = get_user_model().objects.all()
