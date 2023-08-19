@@ -87,8 +87,11 @@ PATCH: http://127.0.0.1:8000/api_user/user/1/
 ```
 
 
-## Подготовка к запуску
+## Запуск
+### из IDE
 >* pip install poetry
 >* poetry install
 >* python manage.py migrate
 >* python manage.py runserver
+### из Docker
+>* docker-compose up -d
