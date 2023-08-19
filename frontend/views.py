@@ -2,16 +2,14 @@ import time
 
 from django.contrib.auth import get_user_model, login
 from django.shortcuts import render, redirect
-from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_200_OK
+
 from rest_framework.authtoken.models import Token
 from frontend.forms import UserForm, UserInviteForm, UserSICForm
 from utils import generate_random_digits, generate_random_string
 from users.validators import validate_phone_number
-from rest_framework.response import Response
 
 
 def get_or_create_user(request):
-
     context = {
         'user_form': UserForm
     }
@@ -26,14 +24,11 @@ def get_or_create_user(request):
         response = redirect(f'auth/{user.id}')
         return response
 
-
     return render(request, 'frontend/index.html', context)
 
 
-
-
 def userlogin(request, pk):
-    context={
+    context = {
         'form': UserInviteForm,
     }
     user = get_user_model().objects.get(pk=pk)
@@ -50,7 +45,6 @@ def userlogin(request, pk):
             user.invite_code = generate_random_string()
             user.save()
 
-
         if user.auth_number != int(auth_number):
             return render(request, 'frontend/error.html', {'messenger': 'Неверный код'})
 
@@ -60,6 +54,7 @@ def userlogin(request, pk):
         return response
 
     return render(request, 'frontend/error.html', {'messenger': 'Не верный код'})
+
 
 def userdetail(request, pk):
     context = {
