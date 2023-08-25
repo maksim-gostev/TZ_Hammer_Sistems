@@ -159,7 +159,7 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Птицы API',
+    'TITLE': 'Hammer Systems API',
     'DESCRIPTION': 'Тестовое задание для Python разработчика: Hammer Systems',
     'VERSION': '1.0.0',
     "CONTACT": {
